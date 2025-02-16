@@ -1,0 +1,32 @@
+//Git
+git remote add origin https://github.com/Chinmay1297/skinet.git
+git branch -M main
+git push -u origin main
+
+//Dotnet CLI
+dotnet --info
+dotnet -h
+dotnet new list
+dotnet new sln
+dotnet new webapi -o API -controllers
+dotnet new classlib -o Core
+dotnet new classlib -o Infrastructure
+dotnet sln add API/
+dotnet sln add Core/
+dotnet sln add Infrastructure/
+dotnet sln list
+dotnet add reference ../Infrastructure
+dotnet add reference ../Core
+dotnet restore
+dotnet build
+dotnet run
+dotnet watch
+dotnet new gitignore
+dotnet tool install --global dotnet-ef --version 8.0.6
+dotnet ef
+dotnet ef migrations add InitialCreate -s API -p Infrastructure
+(s -> startup project, p-> Where dbcontext is located)
+dotnet ef migrations remove -s API -p Infrastructure
+
+//Docker
+docker compose up -d
