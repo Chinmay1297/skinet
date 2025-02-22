@@ -46,7 +46,7 @@ public class ProductsController : ControllerBase
     [HttpPut("{id:int}")]
     public async Task<ActionResult<Product>> UpdateProduct(int id, Product product)
     {
-        if(repository.ProductExists(id))
+        if(!repository.ProductExists(id))
         {
             return NotFound();
         }
