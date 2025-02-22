@@ -19,9 +19,9 @@ public class ProductsController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IReadOnlyList<Product>>> GetProducts()
+    public async Task<ActionResult<IReadOnlyList<Product>>> GetProducts(string? brand, string? type)
     {
-        return Ok(await repository.GetProductsAsync());
+        return Ok(await repository.GetProductsAsync(brand, type));
     }
 
     [HttpGet("{id:int}")]
@@ -73,5 +73,17 @@ public class ProductsController : ControllerBase
         }
 
         return BadRequest("Failed to delete product");
+    }
+
+    [HttpGet("brands")]
+    public async Task<ActionResult<IReadOnlyList<string>>> GetBrands()
+    {
+        return Ok(await repository.GetBrandsAsync());
+    }
+
+    [HttpGet("types")]
+    public async Task<ActionResult<IReadOnlyList<string>>> GetTypes()
+    {
+        return Ok(await repository.GetTypesAsync());
     }
 }
