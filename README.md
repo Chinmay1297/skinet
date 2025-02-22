@@ -15,4 +15,4 @@ What's that problem?
 Let say we have an entity 'Product' and a property of it 'Price' which is specific to this entity only.
 How do we query product based on price using generic repository ?
 
-We can use Specific Pattern, to be exact Generic Expression.
+We can use Specification Pattern, to be exact Generic Expression.
