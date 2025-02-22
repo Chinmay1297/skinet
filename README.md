@@ -4,7 +4,7 @@ Because it takes away the task of communicating with the db from us.
 But what if there are 100 of entities ? Do we create 100 Repositories ?
 We'll create Generic Repository, using Specification Pattern.
 
-Below is an example of Generic Repository
+An example of Generic Repository
 ![image](https://github.com/user-attachments/assets/bad7ed35-8b67-44c4-bb66-1655fccca0c9)
 
 It can only be used for entities that are derived from 'BaseEntity'
