@@ -16,3 +16,24 @@ Let say we have an entity 'Product' and a property of it 'Price' which is specif
 How do we query product based on price using generic repository ?
 
 We can use Specification Pattern, to be exact Generic Expression.
+
+//Put image here
+
+This returns an IQueryable object, which exposes the db.
+And it allows us to create inefficient queries.
+What it is doing is creating a LeakyAbstraction.
+
+The whole point of Repository Pattern is to abstract all these.
+
+So What do we do now?
+
+The Specification pattern to the rescue!
+    -Describes a query in an object
+    -Returns an IQueryable<T>
+    -Generic List method takes specification as parameter
+    -Specification can have meaningful name
+        -OrdersWithItemsAndSortingSpecification
+        (This has meaningful name,, a quick glance at code describes what its going to do)
+
+Flow:
+spec -> Evaluator -> IQueryable<T> -> ListAsync(spec)
