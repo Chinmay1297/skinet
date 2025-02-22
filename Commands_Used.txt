@@ -31,5 +31,11 @@ dotnet ef migrations remove -s API -p Infrastructure
 dotnet ef database update -s API -p Infrastructure
 (Above command creates db if not already created)
 
+dotnet ef migrations add datecreatedormodifiedtimestamp -s API -p Infrastructure
+
+dotnet ef database drop -p Infrastructure -s API
+(To drop the database)
+
+
 //Docker
 docker compose up -d

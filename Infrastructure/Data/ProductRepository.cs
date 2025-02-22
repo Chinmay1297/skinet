@@ -15,6 +15,7 @@ public class ProductRepository : IProductsRepository
     }
     public void AddProduct(Product product)
     {
+        product.CreatedDateTime = DateTime.Now;
         context.Products.Add(product);
     }
 
@@ -72,6 +73,7 @@ public class ProductRepository : IProductsRepository
 
     public void UpdateProduct(Product product)
     {
+        product.ModifiedTimeStamp = DateTime.Now;
         context.Entry(product).State = EntityState.Modified;
     }
 }

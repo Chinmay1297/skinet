@@ -14,8 +14,12 @@ public class StoreContextSeed
             var products = JsonSerializer.Deserialize<List<Product>>((productsData));
 
             if(products == null) return;
-
-            context.Products.AddRange(products);
+            foreach(var product in products)
+            {
+                product.CreatedDateTime = DateTime.Now;
+                context.Products.Add(product);
+            }
+            
             await context.SaveChangesAsync();
         }    
     }
