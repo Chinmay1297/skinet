@@ -25,7 +25,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
 
     public bool Exists(int id)
     {
-        return context.Set<T>().Any(x=>x.Id == id);
+        return context.Set<T>().Any(x => x.Id == id);
     }
 
     public async Task<T?> GetByIdAsync(int id)
@@ -50,12 +50,13 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
 
     public async Task<bool> SaveAllAsync()
     {
-        return await context.SaveChangesAsync()>0;
+        return await context.SaveChangesAsync() > 0;
     }
 
     public void Update(T entity)
     {
         context.Set<T>().Attach(entity);
+        entity.ModifiedTimeStamp = DateTime.Now;
         context.Entry(entity).State = EntityState.Modified;
     }
 

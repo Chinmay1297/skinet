@@ -6,10 +6,11 @@ namespace Core.Specifications;
 
 public class BaseSpecification<T> : ISpecification<T>
 {
-    private readonly Expression<Func<T, bool>> criteria;
-    public BaseSpecification(Expression<Func<T, bool>> criteria)
+    private readonly Expression<Func<T, bool>>? criteria;
+    public BaseSpecification(Expression<Func<T, bool>>? criteria)
     {
         this.criteria = criteria;
     }
-    public Expression<Func<T, bool>> Criteria => criteria;
+    protected BaseSpecification() : this(null) { }
+    public Expression<Func<T, bool>>? Criteria => criteria;
 }
