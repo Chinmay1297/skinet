@@ -81,14 +81,14 @@ public class ProductsController : ControllerBase
     [HttpGet("brands")]
     public async Task<ActionResult<IReadOnlyList<string>>> GetBrands()
     {
-        //TODO: Implement logic
-        return Ok();
+        var spec = new BrandListSpecification();
+        return Ok(await genericRepository.ListAsync(spec));
     }
 
     [HttpGet("types")]
     public async Task<ActionResult<IReadOnlyList<string>>> GetTypes()
     {
-        //TODO: Implement logic
-        return Ok();
+        var spec = new TypeListSpecification();
+        return Ok(await genericRepository.ListAsync(spec));
     }
 }
