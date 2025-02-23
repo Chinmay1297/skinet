@@ -25,6 +25,6 @@ public class BaseSpecification<T> : ISpecification<T>
 
     protected void AddOrderByDescending(Expression<Func<T, object>> orderByDescExpression)
     {
-        OrderBy = orderByDescExpression;
+        OrderByDescending = orderByDescExpression;
     }
 }
