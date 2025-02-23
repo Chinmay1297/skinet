@@ -12,34 +12,34 @@ namespace API.Controllers;
 [Route("api/[controller]")]
 public class ProductsController : ControllerBase
 {
-    private readonly IGenericRepository<Product> repository;
+    private readonly IGenericRepository<Product> genericRepository;
 
     public ProductsController(IGenericRepository<Product> repository)
     {
-        this.repository = repository;
+        this.genericRepository = repository;
     }
 
     [HttpGet]
     public async Task<ActionResult<IReadOnlyList<Product>>> GetProducts(string? brand, string? type, string? sort)
     {
-        var spec = new ProductSpecification(brand,type);
-        var products = await repository.ListAsync(spec);
+        var spec = new ProductSpecification(brand, type, sort);
+        var products = await genericRepository.ListAsync(spec);
         return Ok(products);
     }
 
     [HttpGet("{id:int}")]
     public async Task<ActionResult<Product>> GetProduct(int id)
     {
-        var product = await repository.GetByIdAsync(id);
-        if(product == null) return NotFound();
+        var product = await genericRepository.GetByIdAsync(id);
+        if (product == null) return NotFound();
         return product;
     }
 
     [HttpPost]
     public async Task<ActionResult<Product>> CreateProduct(Product product)
     {
-        repository.Add(product);
-        if(await repository.SaveAllAsync())
+        genericRepository.Add(product);
+        if (await genericRepository.SaveAllAsync())
         {
             return CreatedAtAction(nameof(GetProduct), new { id = product.Id }, product);
         }
@@ -49,13 +49,13 @@ public class ProductsController : ControllerBase
     [HttpPut("{id:int}")]
     public async Task<ActionResult<Product>> UpdateProduct(int id, Product product)
     {
-        if(!repository.Exists(id))
+        if (!genericRepository.Exists(id))
         {
             return NotFound();
         }
 
-        repository.Update(product);
-        if(await repository.SaveAllAsync())
+        genericRepository.Update(product);
+        if (await genericRepository.SaveAllAsync())
         {
             return NoContent();
         }
@@ -66,11 +66,11 @@ public class ProductsController : ControllerBase
     [HttpDelete("{id:int}")]
     public async Task<ActionResult> DeleteProduct(int id)
     {
-        var product = await repository.GetByIdAsync(id);
-        if(product==null) return BadRequest("Product not found");
+        var product = await genericRepository.GetByIdAsync(id);
+        if (product == null) return BadRequest("Product not found");
 
-        repository.Delete(product);
-        if(await repository.SaveAllAsync())
+        genericRepository.Delete(product);
+        if (await genericRepository.SaveAllAsync())
         {
             return NoContent();
         }
