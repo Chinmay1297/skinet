@@ -39,3 +39,14 @@ dotnet ef database drop -p Infrastructure -s API
 
 //Docker
 docker compose up -d
+
+
+
+
+
+//Angular
+node -v       
+npm --version
+npm install -g @angular/cli@18
+npm install -g npm@10.7.0 
+ng new client    
