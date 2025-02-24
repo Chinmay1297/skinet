@@ -1,3 +1,4 @@
+using API.Middleware;
 using Core.Interfaces;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +19,7 @@ var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 
+app.UseMiddleware<ExceptionMiddleware>();
 app.MapControllers();
 
 #region Seed Data
@@ -32,7 +34,8 @@ try
     await StoreContextSeed.SeedAsync(context);
     await context.SaveChangesAsync();
 }
-catch(Exception ex){
+catch (Exception ex)
+{
     Console.WriteLine(ex);
     throw;
 }
