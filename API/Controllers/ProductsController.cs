@@ -3,15 +3,11 @@ using API.RequestHelpers;
 using Core.Entities;
 using Core.Interfaces;
 using Core.Specifications;
-using Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers;
 
-[ApiController]
-[Route("api/[controller]")]
-public class ProductsController : ControllerBase
+public class ProductsController : BaseApiController
 {
     private readonly IGenericRepository<Product> genericRepository;
 
@@ -24,11 +20,14 @@ public class ProductsController : ControllerBase
     public async Task<ActionResult<IReadOnlyList<Product>>> GetProducts([FromQuery] ProductSpecParams specParams)
     {
         var spec = new ProductSpecification(specParams);
-        var products = await genericRepository.ListAsync(spec);
-        var count = await genericRepository.CountAsync(spec);
+        // var products = await genericRepository.ListAsync(spec);
+        // var count = await genericRepository.CountAsync(spec);
 
-        var pagination = new Pagination<Product>(specParams.PageIndex, specParams.PageSize, count, products);
-        return Ok(pagination);
+        // var pagination = new Pagination<Product>(specParams.PageIndex, specParams.PageSize, count, products);
+        // return Ok(pagination);
+
+        //moved above logic to BaseApiController
+        return await CreatePagedResult(genericRepository, spec, specParams.PageIndex, specParams.PageSize);
     }
 
     [HttpGet("{id:int}")]
