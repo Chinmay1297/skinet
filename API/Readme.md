@@ -4,6 +4,3 @@ Contains the following:
     -Middleware
     -Startup Project
     -Data seeding logic, etc
-
-
-//test
