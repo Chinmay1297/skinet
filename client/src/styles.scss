@@ -5,3 +5,11 @@
 .container {
     @apply mx-auto max-w-screen-2xl;
 }
+
+.text-primary {
+    color: #005cbb
+}
+
+.button.match-input-height {
+    height: var(--mat-form-field-container-height) !important;
+}

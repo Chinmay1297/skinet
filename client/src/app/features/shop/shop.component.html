@@ -10,19 +10,32 @@
             [pageIndex]="shopParams.pageNumber - 1"
             aria-label="Select page"
         ></mat-paginator>
+        <form class="relative flex items-center w-full max-w-md mx-4" #searchForm="ngForm" (ngSubmit)="onSearchChange()">
+            <input 
+                type="search" 
+                class="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg"
+                placeholder="Search products..."
+                name="search" 
+                [(ngModel)]="shopParams.search"
+                >
+            <button mat-icon-button type="submit"
+                class="absolute inset-y-0 right-8 top-2 flex items-center pl-3">
+                <mat-icon>search</mat-icon>
+            </button>
+        </form>
         <div class="flex gap-3">
-            <button mat-stroked-button (click)="openFiltersDialog()">
+            <button class="match-input-height" mat-stroked-button (click)="openFiltersDialog()">
                 <mat-icon>filter_list</mat-icon>
                 Filters
             </button>
-            <button mat-stroked-button [matMenuTriggerFor]="sortMenu">
+            <button class="match-input-height" mat-stroked-button [matMenuTriggerFor]="sortMenu">
                 <mat-icon>swap_vert</mat-icon>
                 Sort
             </button>
         </div>
 
     </div>
-
+    
     <div class="grid grid-cols-5 gap-4">
         @for (product of products?.data; track product.id) {
         <app-product-item [product]="product"></app-product-item>
