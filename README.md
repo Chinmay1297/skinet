@@ -42,3 +42,7 @@ spec -> Evaluator -> IQueryable<T> -> ListAsync(spec)
     -we can pass select queries to get the columns we need
     -for this we need to create similar methods of Specification class but with <T,TResult> types.
     -and handle same in specification evaluator
+
+
+
+//TODO: remove filters feature
