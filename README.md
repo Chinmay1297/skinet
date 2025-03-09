@@ -46,3 +46,9 @@ spec -> Evaluator -> IQueryable<T> -> ListAsync(spec)
 
 
 //TODO: remove filters feature
+
+------------------------------------------------ANGULAR---------------------------------------------------
+Interceptors:
+will be used to put some logic before our http requests goes out, or after http responses comes into our app.
+
+return next(req); put your logic before/after this as per your need (before for before req goes out, after for after response comes in)
