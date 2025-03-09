@@ -1,9 +1,15 @@
-.product-card{
+.product-card {
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.product-card:hover{
+.product-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     cursor: pointer;
+}
+
+/* Apply hover effect to price using a custom class */
+.product-card:hover .price-hover {
+    font-weight: 500 !important;
+    color: darkgreen;
 }
