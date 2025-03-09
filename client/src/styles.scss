@@ -10,6 +10,11 @@
     color: #005cbb
 }
 
-.button.match-input-height {
+.match-input-height {
     height: var(--mat-form-field-container-height) !important;
+    border-radius: 20px !important;
+}
+
+.mdc-notched-outline__notch {
+    border-right-style: none !important;
 }
