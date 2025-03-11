@@ -46,9 +46,26 @@ spec -> Evaluator -> IQueryable<T> -> ListAsync(spec)
 
 
 //TODO: remove filters feature
+//TODO: search debounce for products
+//TODO: Rate limiting
 
 ------------------------------------------------ANGULAR---------------------------------------------------
 Interceptors:
 will be used to put some logic before our http requests goes out, or after http responses comes into our app.
 
 return next(req); put your logic before/after this as per your need (before for before req goes out, after for after response comes in)
+
+
+------------------------------------------------DOCKER-----------------------------------------------------
+
+(if u use docker compose down and remove the container then its gonna remove ur data along with it)
+so to keep your data persistent
+use named volumes to keep your data persistent
+(check the docker-compose.yaml file for volumes: to get an idea)
+
+commands used:
+docker compose down
+^ this removes the container
+
+docker compose up -d
+^ this starts the container by pulling redis
