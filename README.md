@@ -66,6 +66,8 @@ we have 3 main types:
 -Computed: this computed value changes as the signal changes
 -Effect: it can react to a signal updating
 
+(click)="$event.stopPropagation()"
+^This is used to stop propagating button click to the card (inside which the button lies) which also has a click event.
 
 //Commands:
 ng g environments
