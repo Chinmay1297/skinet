@@ -55,7 +55,21 @@ will be used to put some logic before our http requests goes out, or after http 
 
 return next(req); put your logic before/after this as per your need (before for before req goes out, after for after response comes in)
 
+Signals:
+State that can be observed and reacted to
+Provides clean API for state management
+Avoid the complexity of observables
+Cant use signals for asynchronous functions
 
+we have 3 main types:
+-Signal: get,set,update the value
+-Computed: this computed value changes as the signal changes
+-Effect: it can react to a signal updating
+
+
+//Commands:
+ng g environments
+^above command generates the file for saving configurations
 ------------------------------------------------DOCKER-----------------------------------------------------
 
 (if u use docker compose down and remove the container then its gonna remove ur data along with it)
