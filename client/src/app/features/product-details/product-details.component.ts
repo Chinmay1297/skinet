@@ -8,6 +8,8 @@ import { MatIcon } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatDivider } from '@angular/material/divider';
+import { CartService } from '../../core/services/cart.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-product-details',
@@ -19,7 +21,8 @@ import { MatDivider } from '@angular/material/divider';
     MatFormField,
     MatInput,
     MatLabel,
-    MatDivider
+    MatDivider,
+    FormsModule
   ],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.scss'
@@ -27,18 +30,46 @@ import { MatDivider } from '@angular/material/divider';
 export class ProductDetailsComponent implements OnInit {
   private shopService = inject(ShopService);
   private activatedRoute = inject(ActivatedRoute);
+  private cartService = inject(CartService);
   product?: Product;
+  quantityInCart = 0;
+  quantity = 1;
 
   ngOnInit(): void {
     this.loadProduct();
   }
 
-  loadProduct(){
+  loadProduct() {
     const id = this.activatedRoute.snapshot.paramMap.get('id');
-    if(!id) return;
+    if (!id) return;
     this.shopService.getProduct(Number(id)).subscribe({
-      next: product => this.product = product,
+      next: product => {
+        this.product = product;
+        this.updateQuantityIncart();
+      },
       error: error => console.log(error)
     });
+  }
+
+  updateCart() {
+    if (!this.product) return;
+    if (this.quantity > this.quantityInCart) {
+      const itemsToAdd = this.quantity - this.quantityInCart;
+      this.quantityInCart += itemsToAdd;
+      this.cartService.addItemToCart(this.product, itemsToAdd);
+    } else {
+      const itemsToRemove = this.quantityInCart - this.quantity;
+      this.quantityInCart -= itemsToRemove;
+      this.cartService.removeItemFromCart(this.product.id, itemsToRemove);
+    }
+  }
+
+  updateQuantityIncart() {
+    this.quantityInCart = this.cartService.cart()?.items.find(x => x.productId === this.product?.id)?.quantity || 0;
+    this.quantity = this.quantityInCart || 1;
+  }
+
+  getButtonText() {
+    return this.quantityInCart > 0 ? 'Update Cart' : 'Add to Cart';
   }
 }
