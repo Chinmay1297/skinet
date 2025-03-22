@@ -1,6 +1,7 @@
 using System;
 using System.Security.Claims;
 using API.DTOs;
+using API.Extensions;
 using Core.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -24,7 +25,7 @@ public class AccountController(SignInManager<AppUser> signInManager) : BaseApiCo
 
         var result = await signInManager.UserManager.CreateAsync(user, registerDto.Password);
 
-        if(!result.Succeeded) return BadRequest(result.Errors);
+        if (!result.Succeeded) return BadRequest(result.Errors);
 
         return Ok();
     }
@@ -40,11 +41,11 @@ public class AccountController(SignInManager<AppUser> signInManager) : BaseApiCo
     [HttpGet("user-info")]
     public async Task<ActionResult> GetUserInfo()
     {
-        if(User.Identity?.IsAuthenticated == false) return NoContent();
-        var user = await signInManager.UserManager.Users.FirstOrDefaultAsync(x=>x.Email == User.FindFirstValue(ClaimTypes.Email));
+        if (User.Identity?.IsAuthenticated == false) return NoContent();
+        var user = await signInManager.UserManager.GetUserByEmail(User);
 
-        if(user == null) return Unauthorized();
-        return Ok(new {
+        return Ok(new
+        {
             user.FirstName,
             user.LastName,
             user.Email
@@ -54,6 +55,6 @@ public class AccountController(SignInManager<AppUser> signInManager) : BaseApiCo
     [HttpGet]
     public ActionResult GetAuthState()
     {
-        return Ok(new { IsAuthenticated = User.Identity?.IsAuthenticated ?? false});
+        return Ok(new { IsAuthenticated = User.Identity?.IsAuthenticated ?? false });
     }
 }
