@@ -43,7 +43,7 @@ spec -> Evaluator -> IQueryable<T> -> ListAsync(spec)
     -for this we need to create similar methods of Specification class but with <T,TResult> types.
     -and handle same in specification evaluator
 
-
+dotnet ef migrations add IdentityAdded -s API -p Infrastructure
 
 //TODO: remove filters feature
 //TODO: search debounce for products
