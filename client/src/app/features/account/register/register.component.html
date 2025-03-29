@@ -6,6 +6,9 @@
         <mat-form-field class="w-full mb-4" appearance="outline">
             <mat-label>First Name</mat-label>
             <input formControlName="firstName" type="text" placeholder="John" matInput>
+            @if(registerForm.get('firstName')?.hasError('required')){
+                <mat-error>First name is required</mat-error>
+            }
         </mat-form-field>
         <mat-form-field class="w-full mb-4" appearance="outline">
             <mat-label>Last Name</mat-label>
@@ -22,15 +25,19 @@
 
         @if(validationErrors)
         {
-            <div class="mb-3 p-4 bg-red-100 text-red-600">
-                <ul class="list-disc px-3">
-                    @for (error of validationErrors; track $index) {
-                        <li>{{error}}</li>
-                    }
-                </ul>
-            </div>
+        <div class="mb-3 p-4 bg-red-100 text-red-600">
+            <ul class="list-disc px-3">
+                @for (error of validationErrors; track $index) {
+                <li>{{error}}</li>
+                }
+            </ul>
+        </div>
         }
-        <button mat-flat-button type="submit" class="w-full py-2">Register</button>
+        <button 
+            [disabled]="registerForm.invalid"
+            mat-flat-button type="submit" 
+            class="w-full py-2">Register
+        </button>
     </form>
 </mat-card>
 
