@@ -3,26 +3,12 @@
         <div class="text-center mb-6">
             <h1 class="text-3xl font-semibold text-primary">Register</h1>
         </div>
-        <mat-form-field class="w-full mb-4" appearance="outline">
-            <mat-label>First Name</mat-label>
-            <input formControlName="firstName" type="text" placeholder="John" matInput>
-            @if(registerForm.get('firstName')?.hasError('required')){
-                <mat-error>First name is required</mat-error>
-            }
-        </mat-form-field>
-        <mat-form-field class="w-full mb-4" appearance="outline">
-            <mat-label>Last Name</mat-label>
-            <input formControlName="lastName" type="text" placeholder="Wick" matInput>
-        </mat-form-field>
-        <mat-form-field class="w-full mb-4" appearance="outline">
-            <mat-label>Email Address</mat-label>
-            <input formControlName="email" type="text" placeholder="name@example.com" matInput>
-        </mat-form-field>
-        <mat-form-field class="w-full mb-4" appearance="outline">
-            <mat-label>Password</mat-label>
-            <input formControlName="password" type="password" placeholder="Password" matInput>
-        </mat-form-field>
 
+        <app-text-input label="First name" formControlName="firstName"/>
+        <app-text-input label="Last name" formControlName="lastName"/>
+        <app-text-input label="Email" formControlName="email"/>
+        <app-text-input label="Password" formControlName="password"/>
+        
         @if(validationErrors)
         {
         <div class="mb-3 p-4 bg-red-100 text-red-600">
@@ -41,7 +27,7 @@
     </form>
 </mat-card>
 
-<mat-card class="max-w-lg mx-auto mt-3 p-2">
+<!-- <mat-card class="max-w-lg mx-auto mt-3 p-2">
     <pre>Form values: {{registerForm.value | json}}</pre>
     <pre>Form status: {{registerForm.status | json}}</pre>
-</mat-card>
+</mat-card> -->
