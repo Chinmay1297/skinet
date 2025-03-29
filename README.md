@@ -43,8 +43,6 @@ spec -> Evaluator -> IQueryable<T> -> ListAsync(spec)
     -for this we need to create similar methods of Specification class but with <T,TResult> types.
     -and handle same in specification evaluator
 
-dotnet ef migrations add IdentityAdded -s API -p Infrastructure
-
 //TODO: remove filters feature
 //TODO: search debounce for products
 //TODO: Rate limiting
@@ -69,19 +67,3 @@ we have 3 main types:
 (click)="$event.stopPropagation()"
 ^This is used to stop propagating button click to the card (inside which the button lies) which also has a click event.
 
-//Commands:
-ng g environments
-^above command generates the file for saving configurations
-------------------------------------------------DOCKER-----------------------------------------------------
-
-(if u use docker compose down and remove the container then its gonna remove ur data along with it)
-so to keep your data persistent
-use named volumes to keep your data persistent
-(check the docker-compose.yaml file for volumes: to get an idea)
-
-commands used:
-docker compose down
-^ this removes the container
-
-docker compose up -d
-^ this starts the container by pulling redis
