@@ -38,8 +38,11 @@ dotnet ef database drop -p Infrastructure -s API
 
 dotnet ef migrations add IdentityAdded -s API -p Infrastructure
 
-//Docker
-docker compose up -d
+dotnet ef migrations add DeliveryMethodsAdded -p Infrastructure -s API
+
+
+
+
 
 
 
@@ -67,7 +70,8 @@ git push origin --delete my-new-branch  # (Optional) Delete it from remote
 
 
 
-//DOCKER
+//Docker
+docker compose up -d
 
 (if u use docker compose down and remove the container then its gonna remove ur data along with it)
 so to keep your data persistent

@@ -10,6 +10,7 @@ public class StoreContext(DbContextOptions options) : IdentityDbContext<AppUser>
 {
     public DbSet<Product> Products { get; set; }
     public DbSet<Address> Addresses { get; set; }
+    public DbSet<DeliveryMethod> DeliveryMethods { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -19,5 +20,6 @@ public class StoreContext(DbContextOptions options) : IdentityDbContext<AppUser>
 
         //Applying custom configurations for Entities
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(ProductConfiguration).Assembly);
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(DeliveryMethodConfiguration).Assembly);
     }
 }
