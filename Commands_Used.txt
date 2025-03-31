@@ -56,6 +56,7 @@ npm install -g npm@10.7.0
 ng new client    
 ng g environments
 ^above command generates the file for saving configurations
+npm install @stripe/stripe-js
 
 
 
